@@ -1,0 +1,20 @@
+<?xml version="1.1" encoding="UTF-8"?>
+<extension id="ip_localisation" status="released" xmlns="http://symphony-cms.com/schemas/extension/1.0">
+    <name>IP Localisation</name>
+    <description>Returns a users geo location information, with the ability to override based on URL parameters.</description>
+    <repo type="github">https://www.github.com/pixelninja/ip_localisation</repo>
+    <types>
+        <type>Third Party Integration</type>
+    </types>
+    <authors>
+        <author>
+            <name github="pixelnina" symphony="touchstone">Phill Gray</name>
+            <website>https://thebold.nz</website>
+        </author>
+    </authors>
+    <releases>
+        <release version="0.1" date="2017-07-15" min="2.3.1" max="2.x.x">
+            - Initial public release
+        </release>
+    </releases>
+</extension>
