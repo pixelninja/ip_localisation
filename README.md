@@ -1,7 +1,7 @@
-FreeGeoIP Service
+IP Localisation
 =================
 
-Returns a users geo location information based off the awesome [freegeoip.net](http://www.freegeoip.net) API for Symphony CMS
+Returns a users geo location information, with the ability to override based on URL parameters, for Symphony CMS.
 
 This extension is heavily based on Dom Sammut's extension FreeGeoIP Service:
 
