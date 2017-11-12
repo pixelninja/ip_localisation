@@ -1,7 +1,6 @@
 <?php
 
     require_once(TOOLKIT . '/class.datasource.php');
-    require_once(EXTENSIONS . '/ip_localisation/lib/class.freegeoip_service.php');
 
     Class datasourceiplocalisation extends Datasource {
         public $dsParamROOTELEMENT = 'ip-localisation';

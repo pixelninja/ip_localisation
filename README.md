@@ -1,36 +1,43 @@
 IP Localisation
 =================
 
-Returns a users geo location information, with the ability to override based on URL parameters, for Symphony CMS.
-
-This extension is heavily based on Dom Sammut's extension FreeGeoIP Service:
-
- - [FreeGeoIP Service](https://github.com/domsammut/freegeoip_service)
-
+Returns a users geo location information, with the ability to override based on URL parameters, for Symphony CMS from [GeoBytes](http://geobytes.com/geobytes-apis/).
 
 ## Example Output
 
 An example of the data set returned in your page XML:
 
     <ip-localisation>
-         <Ip>8.8.8.4</Ip>
-         <CountryCode>US</CountryCode>
-         <CountryName>United States</CountryName>
-         <RegionCode>CA</RegionCode>
-         <RegionName>California</RegionName>
-         <City>Mountain View</City>
-         <ZipCode>94043</ZipCode>
-         <Latitude>37.4192</Latitude>
-         <Longitude>-122.0574</Longitude>
-         <MetroCode>807</MetroCode>
-         <AreaCode>650</AreaCode>
+        <geobytesforwarderfor handle="geobytesforwarderfor" value="geobytesforwarderfor"></geobytesforwarderfor>
+        <geobytesremoteip handle="geobytesremoteip" value="geobytesremoteip">127.0.0.1</geobytesremoteip>
+        <geobytesipaddress handle="geobytesipaddress" value="geobytesipaddress">172.217.25.142</geobytesipaddress>
+        <geobytescertainty handle="geobytescertainty" value="geobytescertainty">99</geobytescertainty>
+        <geobytesinternet handle="geobytesinternet" value="geobytesinternet">AU</geobytesinternet>
+        <geobytescountry handle="geobytescountry" value="geobytescountry">Australia</geobytescountry>
+        <geobytesregionlocationcode handle="geobytesregionlocationcode" value="geobytesregionlocationcode">AUVI</geobytesregionlocationcode>
+        <geobytesregion handle="geobytesregion" value="geobytesregion">Victoria</geobytesregion>
+        <geobytescode handle="geobytescode" value="geobytescode">VI</geobytescode>
+        <geobyteslocationcode handle="geobyteslocationcode" value="geobyteslocationcode">AUVIMELB</geobyteslocationcode>
+        <geobytesdma handle="geobytesdma" value="geobytesdma">0</geobytesdma>
+        <geobytescity handle="geobytescity" value="geobytescity">Melbourne</geobytescity>
+        <geobytescityid handle="geobytescityid" value="geobytescityid">1225</geobytescityid>
+        <geobytesfqcn handle="geobytesfqcn" value="geobytesfqcn">Melbourne, VI, Australia</geobytesfqcn>
+        <geobyteslatitude handle="geobyteslatitude" value="geobyteslatitude">-37.817001</geobyteslatitude>
+        <geobyteslongitude handle="geobyteslongitude" value="geobyteslongitude">144.966995</geobyteslongitude>
+        <geobytescapital handle="geobytescapital" value="geobytescapital">Canberra</geobytescapital>
+        <geobytestimezone handle="geobytestimezone" value="geobytestimezone">+10:00</geobytestimezone>
+        <geobytesnationalitysingular handle="geobytesnationalitysingular" value="geobytesnationalitysingular">Australian</geobytesnationalitysingular>
+        <geobytespopulation handle="geobytespopulation" value="geobytespopulation">19357594</geobytespopulation>
+        <geobytesnationalityplural handle="geobytesnationalityplural" value="geobytesnationalityplural">Australians</geobytesnationalityplural>
+        <geobytesmapreference handle="geobytesmapreference" value="geobytesmapreference">Oceania </geobytesmapreference>
+        <geobytescurrency handle="geobytescurrency" value="geobytescurrency">Australian dollar </geobytescurrency>
+        <geobytescurrencycode handle="geobytescurrencycode" value="geobytescurrencycode">AUD</geobytescurrencycode>
+        <geobytestitle handle="geobytestitle" value="geobytestitle">Australia</geobytestitle>
     </ip-localisation>
 
-### Usage
+### Reasonable Free Access Limits
 
-There is a request limit of 10,000 per hour.
-
-Alternatively you can download the source code for freegeoip.net off GitHub and run your own server and simply update the `$location` variable in the class.freegeoip_service.php file.
+If you expect to exceed the services “Reasonable Free Access Limit” of 16,384 accesses per hour, (about 4.5 look-ups per second), or wish to access the service via SSL, then you may wish to purchase some Mapbytes to pay for these additional look-ups, and thereby become a VIP.
 
 ## Installation
 

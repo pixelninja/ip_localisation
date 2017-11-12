@@ -1,6 +1,6 @@
 <?php
 
-    require_once(EXTENSIONS . '/ip_localisation/lib/class.freegeoip_service.php');
+    require_once(EXTENSIONS . '/ip_localisation/lib/class.geobytes_service.php');
 
     Class extension_ip_localisation extends Extension {
 
@@ -29,6 +29,12 @@
             // Set the country code based on URL parameter
     		if ($_GET['set_country_code']) {
                 $_SESSION['country-code'] = $_GET['set_country_code'];
+                if ($_GET['set_region_code']) {
+                    $_SESSION['region-code'] = $_GET['set_region_code'];
+                }
+                else {
+                    $_SESSION['region-code'] = '';
+                }
             }
 
             // Clear the country code
@@ -39,38 +45,47 @@
             // Add code to parameter pool
     		if (isset($_SESSION['country-code'])) {
             	$context['params']['country'] = $_SESSION['country-code'];
+            	$context['params']['region'] = $_SESSION['region-code'];
             }
             // If the country code hasn't been set manually, then we need to fetch it
             else {
-                // Determine best method of getting Header info
-                if (function_exists('apache_request_headers')) {
-                    $headers = apache_request_headers();
+                if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+                    $ip = $_SERVER['HTTP_CLIENT_IP'];
+                }
+                elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+                    $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
                 }
                 else {
-                    $headers = $_SERVER;
-                }
-
-                // And store the IP address
-                if (array_key_exists( 'X-Forwarded-For', $headers) && filter_var($headers['X-Forwarded-For'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                    $ip = $headers['X-Forwarded-For'];
-                }
-                else if (array_key_exists('HTTP_X_FORWARDED_FOR', $headers) && filter_var($headers['HTTP_X_FORWARDED_FOR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
-                    $ip = $headers['HTTP_X_FORWARDED_FOR'];
-                }
-                else {
-                    $ip = filter_var($_SERVER['REMOTE_ADDR'], FILTER_VALIDATE_IP, FILTER_FLAG_IPV4);
+                    $ip = $_SERVER['REMOTE_ADDR'];
                 }
 
                 // Perform the lookup and store it
-                $data = freegeoip_service_request::ip_lookup($ip);
-                // $data = freegeoip_service_request::ip_lookup('google.com');
+                $data = geobytes_service_request::ip_lookup($ip);
+                // $data = geobytes_service_request::ip_lookup('172.217.25.142');
                 $data = json_decode($data);
 
                 // We use this for adding in DS later
                 $_SESSION['country-data'] = $data;
 
                 // Add the country parameter
-            	$context['params']['country'] = $data->country_code;
+                if (empty($data->geobytesinternet)) {
+        	       $context['params']['country'] = 'NZ';
+                }
+                else {
+        	       $context['params']['country'] = $data->geobytesinternet;
+                }
+
+                // Add the region parameter
+                if (empty($data->geobytesregion)) {
+        	       $context['params']['region'] = 'Otago';
+                }
+                else {
+        	       $context['params']['region'] = $data->geobytesregion;
+                }
+
+                // Update the session with country and region
+                $_SESSION['country-code'] = $context['params']['country'];
+                $_SESSION['region-code'] = $context['params']['region'];
             }
         }
     }
