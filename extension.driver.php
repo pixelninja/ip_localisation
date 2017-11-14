@@ -69,18 +69,18 @@
 
                 // Add the country parameter
                 if (empty($data->geobytesinternet)) {
-        	       $context['params']['country'] = 'NZ';
+        	       $context['params']['country'] = 'nz';
                 }
                 else {
-        	       $context['params']['country'] = $data->geobytesinternet;
+        	       $context['params']['country'] = strtolower($data->geobytesinternet);
                 }
 
                 // Add the region parameter
                 if (empty($data->geobytesregion)) {
-        	       $context['params']['region'] = 'Otago';
+        	       $context['params']['region'] = 'otago';
                 }
                 else {
-        	       $context['params']['region'] = $data->geobytesregion;
+        	       $context['params']['region'] = strtolower($data->geobytesregion);
                 }
 
                 // Update the session with country and region
